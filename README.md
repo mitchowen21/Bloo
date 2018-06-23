@@ -14,7 +14,7 @@ If you've never user Firebase before, be sure to follow the [getting started](ht
 ## Project Color Scheme
 This is the default color scheme for this project. We will use this to create the base design for Bloo. Color Scheme was created with [coolors.co](http://www.coolors.co)
 
-![Color Scheme Image](/app/assets/images/color-scheme.png)
+![Color Scheme Image](/app/assets/img/color-scheme.png)
 
 ## Project Feature Progress
 Below you can find all of our planned features and their respective progress.
