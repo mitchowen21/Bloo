@@ -1,3 +1,5 @@
+![Project Logo](/app/assets/img/bloo-logo.png)
+
 # Bloo
 Complete Business Management
 
