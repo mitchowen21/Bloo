@@ -16,9 +16,10 @@ Below you can find all of our planned features and their respective progress.
 
 | Planned Features    | In Progress           | In Testing           | Published            |
 | ------------------- | :-------------------: | :-------------------:| :-------------------:|
-|                     | Domain Management     |
+|                     | User Management       | 
+| Domain Management   |
 | Client Management   |
-|                     | Email Interface       |
+| Email Interface     |
 | Vendor Management   |
 | Estimate Generation |
 | Invoice Generation  |
