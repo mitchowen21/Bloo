@@ -1,4 +1,4 @@
-![Project Logo](/app/assets/img/bloo-logo.png =12x120)
+![Project Logo](/app/assets/img/bloo-logo.png)
 
 # Bloo
 Complete Business Management
