@@ -8,7 +8,7 @@ Below you can find all of our planned features and their respective progress.
 | ------------------- | :-------------------: | :-------------------:| :-------------------:|
 |                     | Domain Management     |
 | Client Management   |
-| Email Interface     |
+| Email Interface     | Email Interface       |
 | Vendor Management   |
 | Estimate Generation |
 | Invoice Generation  |
@@ -25,6 +25,6 @@ Below you can find all of our planned integrations and their respective progress
 | -------------------     | :-------------------: | :-------------------:| :-------------------:|
 | Lob                     |
 | Stripe                  |
-| DnsSimple               |
+|                         | DnsSimple             |
 | Square                  |
 | Twillio                 |
