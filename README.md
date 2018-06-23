@@ -46,3 +46,7 @@ Below you can find all of our planned integrations and their respective progress
 |                         | DnsSimple             |
 | Square                  |
 | Twillio                 |
+
+## Find a bug or have a feature improvement?
+
+Please create an [issue](https://github.com/mitchowen21/Bloo/issues) on Github by visiting the Issues tab above and clicking on New Issue. Issues and feature improvements will be investigated.
