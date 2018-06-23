@@ -1,2 +1,5 @@
 .*
 !/.gitignore
+database.rules.json
+firebase.json
+storage.rules
