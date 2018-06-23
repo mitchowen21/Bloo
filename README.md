@@ -49,7 +49,7 @@ Below you can find all of our planned integrations and their respective progress
 
 ## License and Use
 
-Bloo is licensed under the **MIT License**. A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
+Bloo is licensed under the **MIT License**. A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code. [View Full License Text](https://github.com/mitchowen21/Bloo/blob/master/LICENSE)
 
 ## Find a bug or have a feature improvement?
 
