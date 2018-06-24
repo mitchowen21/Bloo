@@ -381,7 +381,7 @@ exports.removeEmailForward = functions.https.onRequest((req, res) => {
 				var accountId = response;
 				var domainName = req.body.domainName;
 				var forwardId = req.body.forwardId;
-				dnsimple.domains.listEmailForwards(accountId, domainName, forwardId).then((response) => {
+				dnsimple.domains.deleteEmailForward(accountId, domainName, forwardId).then((response) => {
 					res.status(200).send(response);
 				}).catch(error => {
 					res.status(500).send(error);
