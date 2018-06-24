@@ -3,3 +3,4 @@
 database.rules.json
 firebase.json
 storage.rules
+functions/node_modules/*
