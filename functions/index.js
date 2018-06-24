@@ -124,7 +124,7 @@ exports.createDomain = functions.https.onRequest((req, res) => {
 			checkAuthorization().then((response) => {
 				var accountId = response;
 				var domainName = req.body.domainName;
-				dnsimple.domains.createDomain(accountId, domainName).then((response) => {
+				dnsimple.domains.createDomain(accountId, {'name': domainName}).then((response) => {
 					res.status(200).send(response);
 				}).catch(error => {
 					res.status(500).send(error);
