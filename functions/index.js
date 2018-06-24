@@ -89,7 +89,7 @@ exports.listDomains = functions.https.onRequest((req, res) => {
 
 exports.listDomain = functions.https.onRequest((req, res) => {
 	cors(req, res, () => {
-		if(req.method == 'GET') {
+		if(req.method == 'POST') {
 			checkAuthorization().then((response) => {
 				var accountId = response;
 				var domainName = req.body.domainName;
