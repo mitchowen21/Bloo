@@ -169,6 +169,232 @@ exports.deleteDomain = functions.https.onRequest((req, res) => {
 	});
 });
 
+/**
+*
+* Function Name: List Collaborators
+*
+* Purpose: List collaborators for a specified domain
+*
+* @param {domainName} The domain name to list collaborators on
+*
+*
+*/
+
+exports.listCollaborators = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var domainName = req.body.domainName;
+				dnsimple.collaborators.listCollaborators(accountId, domainName, {sort: 'email:asc'}).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Add Collaborator
+*
+* Purpose: Add a collaborator to a specified domain
+*
+* @param {domainName} The domain name to list collaborators on
+*
+* @param [collaborator] The collaborators email
+*/
+
+exports.addCollaborator = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var domainName = req.body.domainName;
+				var collaborator = req.body.collaborator;
+				dnsimple.collaborators.addCollaborator(accountId, domainName, {"email": collaborator}).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Remove Collaborator
+*
+* Purpose: Remove a collaborator from a specified domain
+*
+* @param {domainName} The domain name to list collaborators on
+*
+* @param {collaboratorId} The collaborators ID
+*/
+
+exports.removeCollaborator = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'DELETE') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var domainName = req.body.domainName;
+				var collaboratorId = req.body.collaboratorId;
+				dnsimple.collaborators.removeCollaborator(accountId, domainName, collaboratorId).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: List Email Forwards
+*
+* Purpose: Lists email forwards for a specified domain
+*
+* @param {domainName} The domain name to list collaborators on
+*
+* 
+*/
+
+exports.listEmailForwards = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var domainName = req.body.domainName;
+				dnsimple.domains.listEmailForwards(accountId, domainName, {sort: 'from:asc'}).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: list Email Forward
+*
+* Purpose: Lists a specific email forward for a specified domain
+*
+* @param {domainName} The domain name to list collaborators on
+*
+* @param {forwardId} The ID of the email forward
+*/
+
+exports.listEmailForward = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var domainName = req.body.domainName;
+				var forwardId = req.body.forwardId;
+				dnsimple.domains.getEmailForward(accountId, domainName, forwardId).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Create Email Forward
+*
+* Purpose: Create an email forward for a specified domain
+*
+* @param {domainName} The domain name to list collaborators on
+*
+* @param {from} The from email address
+*
+* @param {to} The to email address
+*
+*/
+
+exports.createEmailForward = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var domainName = req.body.domainName;
+				var fromAddress = req.body.fromAddress;
+				var toAddress = req.body.toAddress;
+				dnsimple.domains.listEmailForwards(accountId, domainName, {'from' : fromAddress, 'to' : toAddress}).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Remove an Email Forward
+*
+* Purpose: Delete a specified email forward for a specified domain
+*
+* @param {domainName} The domain name to list collaborators on
+*
+* @param {forwardId} The forward ID to delete 
+*/
+
+exports.removeEmailForward = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'DELETE') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var domainName = req.body.domainName;
+				var forwardId = req.body.forwardId;
+				dnsimple.domains.listEmailForwards(accountId, domainName, forwardId).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
 
 /**
 * PRIVATE FUNCTION
