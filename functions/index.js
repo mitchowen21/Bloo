@@ -59,7 +59,7 @@ exports.checkDomainAvailability = functions.https.onRequest((req, res) => {
 
 exports.listDomains = functions.https.onRequest((req, res) => {
 	cors(req, res, () => {
-		if(req.method == 'GET') {
+		if(req.method == 'GET' || req.body.data.directCall) {
 			checkAuthorization().then((response) => {
 				var accountId = response;
 				dnsimple.domains.allDomains(accountId).then((response) => {
@@ -71,7 +71,7 @@ exports.listDomains = functions.https.onRequest((req, res) => {
 				res.status(500).send(error)
 			));
 		} else {
-			res.status(405).send('Method Not Allowed');
+			res.status(405).send('Method '+req.method+' Not Allowed');
 		}
 	});
 });
