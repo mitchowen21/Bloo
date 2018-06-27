@@ -335,9 +335,9 @@ exports.listEmailForward = functions.https.onRequest((req, res) => {
 *
 * @param {domainName} The domain name to list collaborators on
 *
-* @param {from} The from email address
+* @param {fromAddress} The from email address
 *
-* @param {to} The to email address
+* @param {toAddress} The to email address
 *
 */
 
@@ -349,7 +349,7 @@ exports.createEmailForward = functions.https.onRequest((req, res) => {
 				var domainName = req.body.domainName;
 				var fromAddress = req.body.fromAddress;
 				var toAddress = req.body.toAddress;
-				dnsimple.domains.listEmailForwards(accountId, domainName, {'from' : fromAddress, 'to' : toAddress}).then((response) => {
+				dnsimple.domains.createEmailForward(accountId, domainName, {from : fromAddress, to : toAddress}).then((response) => {
 					res.status(200).send(response);
 				}).catch(error => {
 					res.status(500).send(error);
@@ -394,6 +394,132 @@ exports.removeEmailForward = functions.https.onRequest((req, res) => {
 		}
 	});
 });
+
+/**
+*
+* Function Name: Initiate Domain Push
+*
+* Purpose: Begin a domain push to another account
+*
+* @param {domainName} The domain name to transfer
+*
+* @param {newEmail} The new email for the domain
+*
+*/
+
+exports.initiateDomainPush = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var domainName = req.body.domainName;
+				var newEmail = req.body.newEmail;
+				var newContact = req.body.newContact;
+				dnsimple.domains.initiatePush(accountId, domainName, { new_account_email : newEmail }).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: List pushes for account
+*
+* Purpose: List all pushes for an account
+*
+*/
+
+exports.listAccountPushes = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'GET') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var domainName = req.body.domainName;
+				dnsimple.domains.listPushes(accountId).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Accept Pending Push
+*
+* Purpose: Accept a pending push for an account
+*
+* @param {pushID} The push ID
+*
+* @param {contactID} The contact ID for the domain
+*/
+
+exports.acceptPendingPush = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var pushID = req.body.pushID;
+				var contactID = req.body.contactID;
+				dnsimple.domains.acceptPush(accountId, pushID, { contact_id : contactID }).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Reject Pending Push
+*
+* Purpose: Reject a pending push for an account
+*
+* @param {pushID} The push ID\
+*
+*/
+
+exports.rejectPendingPush = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var pushID = req.body.pushID;
+				dnsimple.domains.rejectPush(accountId, pushID).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+
 
 
 /**
