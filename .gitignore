@@ -6,3 +6,4 @@ storage.rules
 functions/node_modules/*
 functions/node_modules/cors/package.json
 functions/firebase-debug.log
+*.log
