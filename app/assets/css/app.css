@@ -1,2 +1,73 @@
 
-@import url('../third_party/bootstra-4.1.1/dist/css/bootstrap.min.css');
+@import url('https://pro.fontawesome.com/releases/v5.1.0/css/all.css');
+
+body {
+	padding-top: 65px;
+}
+
+.bg-primary {
+	background-color: #214f74 !important;
+}
+
+i.float-right {
+	margin-top: 5px;
+}
+
+.navbar-toggle {
+	background-color: transparent;
+	border: none;
+	color: white;
+}
+
+.offcanvas .nav .nav-link {
+	color: #01161e;
+	margin-bottom: 10px;
+}
+
+.offcanvas .nav .nav-link.active, .offcanvas .nav .nav-link:hover {
+	background-color: #0c6291;
+	color: white;
+}
+
+.offcanvas .dropdown-menu {
+	width: 100%;
+	margin: 0px;
+	border: none;
+	background-color: #fbfef9 !important;
+}
+
+.offcanvas .dropdown-menu .dropdown-link {
+	padding: 0px;
+	color: #01161e;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #01161e;
+    text-decoration: none;
+    background-color: #fbfef9;
+}
+
+.offcanvas .dropdown-menu .dropdown-link:hover {
+	text-decoration: none;
+	background-color: #fbfef9;
+}
+
+.navmenu-default .navmenu-brand {
+	background-color: #214f74 !important;
+	color: white;
+	margin-top: 0px;
+	padding-top: 19.5px;
+	padding-bottom: 19.5px;
+}
+
+.account-image-holder {
+	text-align: center;
+}
+
+.account-image-circle {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin-bottom: 5px;
+
+}

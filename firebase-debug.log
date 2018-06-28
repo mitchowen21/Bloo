@@ -1,0 +1,77 @@
+[debug] [2018-06-27T22:10:53.404Z] ----------------------------------------------------------------------
+[debug] [2018-06-27T22:10:53.405Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-06-27T22:10:53.405Z] CLI Version:   3.18.4
+[debug] [2018-06-27T22:10:53.405Z] Platform:      darwin
+[debug] [2018-06-27T22:10:53.405Z] Node Version:  v10.0.0
+[debug] [2018-06-27T22:10:53.406Z] Time:          Wed Jun 27 2018 17:10:53 GMT-0500 (CDT)
+[debug] [2018-06-27T22:10:53.406Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-27T22:10:53.416Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-27T22:10:53.417Z] > authorizing via signed-in user
+[debug] [2018-06-27T22:10:53.418Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-06-27T22:10:53.418Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/DxNOlK57LcjSrhV9OATklLXOKIAy_qB5d8NBA3fZ2l0fnl2uztS3Hc992JMAOiS_',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Jun 27 2018 17:10:53 GMT-0500 (CDT)
+[debug] [2018-06-27T22:10:53.721Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-27T22:10:53.728Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/bloo-61290  
+  
+ Wed Jun 27 2018 17:10:53 GMT-0500 (CDT)
+[debug] [2018-06-27T22:10:54.156Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-27T22:10:54.157Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/bloo-61290/tokens  
+  
+ Wed Jun 27 2018 17:10:54 GMT-0500 (CDT)
+[debug] [2018-06-27T22:10:54.529Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-27T22:10:54.530Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/bloo-61290  
+  
+ Wed Jun 27 2018 17:10:54 GMT-0500 (CDT)
+[debug] [2018-06-27T22:10:54.940Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/mitch/websites/Bloo'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-06-27T22:10:55.753Z] Fetching environment
+[debug] [2018-06-27T22:10:55.756Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/832706734806:getServerAppConfig  
+  
+ Wed Jun 27 2018 17:10:55 GMT-0500 (CDT)
+[debug] [2018-06-27T22:10:55.757Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/832706734806/clients/_:getWebAppConfig  
+  
+ Wed Jun 27 2018 17:10:55 GMT-0500 (CDT)
+[debug] [2018-06-27T22:10:56.173Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: app
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[debug] [2018-06-27T22:10:56.240Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-27T22:10:56.240Z] Starting @google-cloud/functions-emulator
+[debug] [2018-06-27T22:10:57.777Z] Parsing function triggers
+[warn] ⚠  functions: Failed to load functions source code. Ensure that you have the latest SDK by running npm i --save firebase-functions inside the functions directory.
+[debug] [2018-06-27T22:10:58.285Z] Error during trigger parsing:  Error occurred while parsing your function triggers.
+
+TypeError: Cannot read property 'access' of undefined
+    at Object.<anonymous> (/Users/mitch/websites/Bloo/functions/index.js:6:125)
+    at Module._compile (internal/modules/cjs/loader.js:678:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:689:10)
+    at Module.load (internal/modules/cjs/loader.js:589:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:528:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:520:3)
+    at Module.require (internal/modules/cjs/loader.js:626:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at /usr/local/lib/node_modules/firebase-tools/lib/triggerParser.js:21:11
+    at Object.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/triggerParser.js:61:3)
+[warn] ⚠  functions: Error from emulator. Error occurred while parsing your function triggers.
+
+TypeError: Cannot read property 'access' of undefined
+    at Object.<anonymous> (/Users/mitch/websites/Bloo/functions/index.js:6:125)
+    at Module._compile (internal/modules/cjs/loader.js:678:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:689:10)
+    at Module.load (internal/modules/cjs/loader.js:589:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:528:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:520:3)
+    at Module.require (internal/modules/cjs/loader.js:626:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at /usr/local/lib/node_modules/firebase-tools/lib/triggerParser.js:21:11
+    at Object.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/triggerParser.js:61:3)
+[debug] [2018-06-27T22:10:58.286Z] 

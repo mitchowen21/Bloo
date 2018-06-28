@@ -17,6 +17,61 @@ app.use(bodyParser.json());
 
 /**
 *
+* Function Name: List Accounts
+*
+* Purpose: Lists the available accounts
+*
+* 
+*
+*
+*/
+
+exports.listAccounts = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'GET') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				dnsimple.accounts.listAccounts(accountId).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Account Details
+*
+* Purpose: Returns the details for the selected account
+*
+* 
+*
+*
+*/
+
+exports.accountDetails = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'GET') {
+			dnsimple.identity.whoami().then((response) => {
+				res.status(200).send(response);
+			}).catch((error) => {
+				res.status(500).send(error);
+			});
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
 * Function Name: Check Domain Availability
 *
 * Purpose: Check the registration availability of a domain
@@ -31,6 +86,7 @@ exports.checkDomainAvailability = functions.https.onRequest((req, res) => {
 		if(req.method == 'POST') {
 			checkAuthorization().then((response) => {
 				var accountId = response;
+				console.log(req.body);
 				var domainName = req.body.domainName;
 				dnsimple.registrar.checkDomain(accountId, domainName).then((response) => {
 					res.status(200).send(response);
@@ -506,6 +562,36 @@ exports.rejectPendingPush = functions.https.onRequest((req, res) => {
 				var accountId = response;
 				var pushID = req.body.pushID;
 				dnsimple.domains.rejectPush(accountId, pushID).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: List Account Contacts
+*
+* Purpose: List account contacts
+*
+* 
+*
+*/
+
+exports.listContacts = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var pushID = req.body.pushID;
+				dnsimple.contacts.allContacts(accountId).then((response) => {
 					res.status(200).send(response);
 				}).catch(error => {
 					res.status(500).send(error);

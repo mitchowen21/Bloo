@@ -4,18 +4,99 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bloo</title>
+
+    <link href="assets/third_party/bootstrap-4.1.1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/third_party/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet"/>
+
     <link href="assets/css/app.css" rel="stylesheet"/>
   </head>
   <body>
 
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+      <span class="navbar-brand">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#offCanvasMainMenu" data-canvas="body">
+          <i class="fal fa-bars fa-fw"></i>
+        </button>
+        <span class="location"></span>
+      </span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNav" aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="topNav">
+        <ul class="navbar-nav mr-auto">
+          
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="tooltip" title="Notifications">
+              <i class="fal fa-bell fa-fw"></i> 
+              <span class="d-md-block d-lg-none">Notifications</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="tooltip" title="Inbox">
+              <i class="fal fa-inbox fa-fw"></i>
+              <span class="d-md-block d-lg-none">Inbox</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="tooltip" title="Settings">
+              <i class="fal fa-sliders-v fa-fw"></i>
+              <span class="d-md-block d-lg-none">Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="tooltip" title="Sign Out">
+              <i class="fal fa-sign-out fa-fw"></i>
+              <span class="d-md-block d-lg-none">Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
+    <nav id="offCanvasMainMenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+      <a class="navmenu-brand" href="#">Bloo</a>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="#/dashboard">
+            <i class="fal fa-tachometer fa-fw"></i>
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/domains">
+            <i class="fal fa-globe-americas fa-fw"></i>
+            Domains
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid main-content"></div>
+
+
+    <script defer src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script defer src="assets/third_party/bootstrap-4.1.1/dist/js/bootstrap.min.js"></script>
+
+    <script defer src="assets/third_party/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
 
     <script defer src="/__/firebase/5.1.0/firebase-app.js"></script>
     <script defer src="/__/firebase/5.1.0/firebase-auth.js"></script>
     <script defer src="/__/firebase/5.1.0/firebase-database.js"></script>
     <script defer src="/__/firebase/5.1.0/firebase-messaging.js"></script>
     <script defer src="/__/firebase/5.1.0/firebase-storage.js"></script>
+    <script defer src="/__/firebase/5.1.0/firebase-functions.js"></script>
     <script defer src="/__/firebase/init.js"></script>
+
+    <script defer src="assets/third_party/jq-router/jq-router.min.js"></script>
+
+    <script defer src="assets/third_party/moment/moment.min.js"></script>
+
+    <script defer src="assets/js/routes.js"></script>
+    <script defer src="assets/js/config.js"></script>
 
   </body>
 </html>
