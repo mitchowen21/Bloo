@@ -587,7 +587,7 @@ exports.rejectPendingPush = functions.https.onRequest((req, res) => {
 
 exports.listContacts = functions.https.onRequest((req, res) => {
 	cors(req, res, () => {
-		if(req.method == 'POST') {
+		if(req.method == 'GET') {
 			checkAuthorization().then((response) => {
 				var accountId = response;
 				var pushID = req.body.pushID;
@@ -605,7 +605,128 @@ exports.listContacts = functions.https.onRequest((req, res) => {
 	});
 });
 
+/**
+*
+* Function Name: Get Account Contact
+*
+* Purpose: Get single contact information
+*
+* @params {contactID} The id for the contact
+*
+*/
 
+exports.listContact = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'PUSH') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var contactID = req.body.contactID;
+				dnsimple.contacts.getContact(accountId, contactID).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Create Account Contact
+*
+* Purpose: creates an account contact
+*
+* @params {data} The details of the contact
+*
+*/
+
+exports.createContact = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var data = req.body;
+				dnsimple.contacts.createContact(accountId, data).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Update Account Contact
+*
+* Purpose: update an account contact
+*
+* @params {contactID} The id for the updating contact
+*
+* @params {data} The updated details of the contact
+*
+*/
+
+exports.updateContact = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'POST') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var contactID = req.body.contactId;
+				var data = req.body.data;
+				dnsimple.contacts.updateContact(accountId, contactID, data).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
+
+/**
+*
+* Function Name: Delete Account Contact
+*
+* Purpose: delete an account contact
+*
+* @params {contactID} The id for the updating contact
+*
+*/
+
+exports.deleteContact = functions.https.onRequest((req, res) => {
+	cors(req, res, () => {
+		if(req.method == 'DELETE') {
+			checkAuthorization().then((response) => {
+				var accountId = response;
+				var contactID = req.body.contactId;
+				dnsimple.contacts.deleteContact(accountId, contactID, data).then((response) => {
+					res.status(200).send(response);
+				}).catch(error => {
+					res.status(500).send(error);
+				});
+			}).catch(error => (
+				res.status(500).send(error)
+			));
+		} else {
+			res.status(405).send('Method Not Allowed');
+		}
+	});
+});
 
 
 /**

@@ -1,38 +1,41 @@
+<div class="moduleSidebar bg-primary">
+	<ul class="nav" id="domainsTab">
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Overview">
+			<a class="nav-link active" href="#overview" data-toggle="tab">
+				<i class="fal fa-tachometer"></i>
+			</a>
+		</li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Domains">
+			<a class="nav-link" href="#domains" data-toggle="tab">
+				<i class="fal fa-globe-americas"></i>
+			</a>
+		</li>
+		<li class="nav-item d-none"><a class="nav-link" href="#registerDomain" data-toggle="tab"></a></li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contacts">
+			<a class="nav-link" href="#contacts" data-toggle="tab">
+				<i class="fal fa-user"></i>
+			</a>
+		</li>
+		<li class="nav-item d-none"><a class="nav-link" href="#newContact" data-toggle="tab"></a></li>
+	</ul>
+</div>
 
-<div class="row">
-	<div class="col col-sm-2">
-		<div class="list-group">
-			<span class="list-group-item list-group-item-dark">Domains</span>
-			<a href="#overview" class="list-group-item list-group-item-action active" data-toggle="tab">
-				Overview
-			</a>
-			<a href="#domains" class="list-group-item list-group-item-action" data-toggle="tab">
-				Domains
-			</a>
-			<a href="#contacts" class="list-group-item list-group-item-action">
-				Contacts
-			</a>
-			<a href="#templates" class="list-group-item list-group-item-action">
-				Templates
-			</a>
-		</div>
-		<p class="text-muted text-center"><small>Domain services provided by <a href="https://dnsimple.com/" target="_blank">DNSimple.com</a>.</small></p>
-	</div>
-	<div class="col col-sm-10">
+<div class="row moduleContent">
+	<div class="col-sm-12">
 		<div class="row">
 			<div class="col">
 				<div class="tab-content" id="domainsTabContent">
 					<div class="tab-pane show active" id="overview">
 						<div class="row">
 							<div class="col col-sm-9">
-								<div class="card">
+								<div class="card pb-0">
 									<div class="card-header">
 										<b><span class="totalDomainCount"></span> Domains</b>
-										<button class="btn btn-outline-primary float-right">
+										<button class="btn btn-outline-primary float-right" onclick="toggleTab('registerDomain')">
 											Add Domain
 										</button>
 									</div>
-									<table class="table table-hover" id="domainsOverviewTable">
+									<table class="table table-hover pb-0" id="domainsOverviewTable">
 										<tbody></tbody>
 									</table>
 								</div>
@@ -83,7 +86,7 @@
 								<div class="card">
 									<div class="card-header">
 										<b>Showing <span class="totalDomainCount"></span> Domains</b>
-										<button class="btn btn-outline-primary float-right">
+										<button class="btn btn-outline-primary float-right" onclick="toggleTab('registerDomain')">
 											Add Domain
 										</button>
 									</div>
@@ -100,6 +103,260 @@
 										</thead>
 										<tbody></tbody>
 									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="registerDomain">
+						<div class="container">
+							<div id="selectType">
+								<p><b>How would you like to add your domain?</b></p>
+								<hr/>
+								<div class="row">
+									<div class="col">
+										<div class="card">
+											<div class="card-body text-center">
+												<h2 class="text-primary"><i class="fal fa-dollar-sign"></i></h2>
+												<p>
+													<b>Register a new domain</b>
+												</p>
+												<p><button class="btn btn-outline-primary" onclick="setRegistrationType('register')">Register a domain</button></p>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="card">
+											<div class="card-body text-center">
+												<h2 class="text-primary"><i class="fal fa-redo-alt"></i></h2>
+												<p>
+													<b>Transfer my domain</b>
+												</p>
+												<p><button class="btn btn-outline-primary" onclick="setRegistrationType('transfer')">Transfer a domain</button></p>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="card">
+											<div class="card-body text-center">
+												<h2 class="text-primary"><i class="fal fa-server"></i></h2>
+												<p>
+													<b>Use domain services</b>
+												</p>
+												<p><button class="btn btn-outline-primary" onclick="setRegistrationType('services')">Use domain services</button></p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="generalInfo">
+								<p><b>General Information</b></p>
+								<hr/>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Domain Name</label>
+											<div class="input-group">
+  												<div class="input-group-prepend"></div>
+												<input type="text" name="domainName" class="form-control" />
+											</div>
+											<span class="form-text domain-status d-none"></span>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Registrant</label>
+											<select class="form-control" name="domainRegistrant">
+												<option value="" default>Select a Contact</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<span id="domainAddons">
+									<hr/>
+									<p><b>Domain Addons</b></p>
+									<hr/>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group" id="privacyProtection">
+												<label class="control-label">
+													<b>WHOIS Privacy protection</b>
+													<span class="text-muted">Recommended</span>
+												</label>
+												<div class="form-check">
+	  												<input class="form-check-input" type="checkbox" value="" name="hideContact" id="hideContact">
+													<label class="form-check-label" for="hideContact">
+														Hide my contact information in WHOIS for an additional $3.00/year.
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group" id="autoRenewal">
+												<label class="control-label">
+													<b>Domain auto renewal</b>
+													<span class="text-muted">Recommended</span>
+												</label>
+												<div class="form-check">
+	  												<input class="form-check-input" type="checkbox" value="" name="autoRenew" id="autoRenew">
+													<label class="form-check-label" for="autoRenew">
+														Automatically renew this domain each year
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</span>
+							</div>
+							<div id="register">
+								<hr/>
+								<p><b>Registration Details</b></p>
+								<hr/>
+								<p>By clicking Register Domain you agree to pay for a 1 year registration. <b>Your credit card will be charged immediately.</b></p>
+								<p class="text-muted">Your domain will be registered through Enom, an ICANN accredited domain registrar.</p>
+								<p class="text-muted">By registering this domain you agree to the <a href="https://dnsimple.com/registration-agreement" target="_blank">DNSimple Domain Registration Agreement</a> and the <a href="https://www.enom.com/terms/agreement.aspx" target="_blank">Enom Domain Registration Agreement.</a></p>
+							</div>
+							<div id="transfer">
+								<hr/>
+								<p><b>Transfer Details</b></p>
+								<hr/>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Transfer Code</label>
+											<input type="text" name="transferCode" class="form-control"/>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<ul class="fa-ul">
+											<li><span class="fa-li"><i class="fas fa-check-square"></i></span> Make sure to disable WHOIS privacy protection if you have enabled it BEFORE you submit your transfer order, otherwise your transfer will likely fail!</li>
+											<li><span class="fa-li"><i class="fas fa-check-square"></i></span> If you are not already using DNSimple's name servers and you would like to then set up and test your DNS records from DNSimple before you move the domain. Add the domain to your account with "Use domain services" in the Add domain page.</li>
+											<li><span class="fa-li"><i class="fas fa-check-square"></i></span> Transfers are typically disallowed for domains registered within the last 60 days.</li>
+											<li><span class="fa-li"><i class="fas fa-check-square"></i></span> Please unlock the domain in the existing registrar before submitting your transfer request.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div id="services">
+								<hr/>
+								<p><b>Before you start</b></p>
+								<hr/>
+								<p>To use our DNS service, you'll have to update your <a href="https://support.dnsimple.com/articles/delegating-dnsimple-hosted/" target="_blank">current name servers at your registrar.</a></p>
+							</div>
+							<div class="pb-5" id="addDomainFooter">
+								<hr/>
+								<button class="btn btn-secondary" onclick="toggleTab('overview')">Cancel</button>
+								<button class="btn btn-success float-right" id="addDomainBtn" onclick="finishAddingDomain(this)"></button>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="contacts">
+						<div class="row">
+							<div class="col-sm-12">
+								<button class="btn btn-success float-right" data-toggle="tooltip" title="Create New Client" data-placement="left" onclick="toggleTab('newContact')">
+									<i class="fal fa-plus"></i>
+								</button>
+							</div>
+						</div>
+						<div class="row" id="contactTotalDisplay"></div>
+					</div>
+					<div class="tab-pane" id="newContact">
+						<div class="row">
+							<div class="col col-sm-12">
+								<div class="card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">Label <small class="text-muted">(Optional)</small></label>
+													<input type="text" name="label" class="form-control">
+													<span class="form-text text-muted">Use a label as a way to distinguish between similar contacts.</span>
+												</div>
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">First Name</label>
+													<input type="text" name="first_name" class="form-control">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">Last Name</label>
+													<input type="text" name="last_name" class="form-control">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">Email</label>
+													<input type="text" name="email" class="form-control">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">Phone</label>
+													<input type="text" name="phone" class="form-control" data-mask="+9 999 9999999">
+													<span class="form-text text-muted">Country code is required.</span>
+												</div>
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">Organization Name <small class="text-muted">(Optional)</small></label>
+													<input type="text" name="organization_name" class="form-control">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">Job Title <small class="text-muted">(Optional)</small></label>
+													<input type="text" name="job_title" class="form-control">
+													<span class="form-text text-muted">Required if you specify an organization name.</span>
+												</div>
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">Address</label>
+													<input type="text" name="address1" class="form-control">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">Apt or Suite <small class="text-muted">(Optional)</small></label>
+													<input type="text" name="address2" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">City</label>
+													<input type="text" name="city" class="form-control">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">State or Province</label>
+													<input type="text" name="state_province" class="form-control">
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label class="control-label">Zip Code</label>
+													<input type="text" name="postal_code" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="card-footer">
+										<button class="btn btn-outline-secondary" onclick="toggleTab('contacts')">Cancel</button>
+										<button class="btn btn-outline-primary float-right" onclick="createContact()">Create Contact</button>
+									</div>
 								</div>
 							</div>
 						</div>
